@@ -3,13 +3,13 @@ import { useEffect, useState } from 'preact/hooks';
 import { BookingResponse } from '../types/booking'
 import Hotel from "./hotel.component"
 import Filter from './filter.component';
-import * as styles from './searchResult.module.less';
+import * as styles from '../less/searchResult.module.less';
 
 export default function SearchResultComponent(props): JSX.Element {
   const holidays = props?.holidays;
   const [filteredHolidays, setFilteredHolidays] = useState<BookingResponse[]>(holidays)
   const [selectedPrice, setSelectedPrice] = useState<number[][]>([])
-  const [selectedRating, setSelectedRating] = useState(0)
+  const [selectedRating, setSelectedRating] = useState<number[]>([])
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([])
   const [render, setRender] = useState(false)
   
@@ -22,8 +22,12 @@ export default function SearchResultComponent(props): JSX.Element {
       if(!check) setSelectedPrice(prevState => prevState.filter(item => item[0]!==numberRangeArr[0] && item[1] !== numberRangeArr[1]))
   }
   
-  const handleRatingFilter = (rating: number) => {
-      setSelectedRating(rating)
+  const handleRatingFilter = (e: MouseEvent) => {
+      const currentTarget = e.target as HTMLInputElement
+      const check = currentTarget.checked;
+      const value = parseInt(currentTarget.value);
+      if(check) setSelectedRating(prevState => [...prevState, value])
+      if(!check) setSelectedRating(prevState => prevState.filter(item => item!=value)) 
   }
 
   const handleFacilityFilter = (e: MouseEvent) => {
@@ -36,7 +40,7 @@ export default function SearchResultComponent(props): JSX.Element {
   const handleRemoveFilter = (e: MouseEvent) => {
       setSelectedFacilities([])
       setSelectedPrice([])
-      setSelectedRating(0)
+      setSelectedRating([])
       setRender(true)
       setTimeout(()=>{setRender(false)}, 50)
   }
@@ -49,16 +53,16 @@ export default function SearchResultComponent(props): JSX.Element {
 
   const selectedFilter = () => {
     let filteredResult = holidays;
+    if(selectedRating.length > 0){
+        filteredResult = filteredResult.filter(holiday => selectedRating.indexOf(parseInt(holiday["hotel"]["content"]["vRating"])) > -1 )
+    }
     if(selectedPrice.length > 0) {
        let filterHoliday : any[] = []
        selectedPrice.forEach(range => {
            filterHoliday.push(filteredResult.filter(holiday => holiday["pricePerPerson"] >= range[0] && holiday["pricePerPerson"] <= range[1]))
         })
         filteredResult = [].concat(...filterHoliday)
-    }
-    if(selectedRating){
-        filteredResult = filteredResult.filter(holiday => parseInt(holiday["hotel"]["content"]["vRating"]) <= selectedRating)
-    }
+    }    
     if(selectedFacilities) {
         filteredResult =  filteredResult.filter(holiday => selectedFacilities.every((requiredFacilities => holiday["hotel"]["content"]["hotelFacilities"].includes(requiredFacilities))))
     }
@@ -71,7 +75,7 @@ export default function SearchResultComponent(props): JSX.Element {
         <div className='row'>
           <div className='col-md-3'>
             {!render && <div className={`${styles["filters"]}`}>
-                <Filter handlePriceFilter={handlePriceFilter} handleRatingFilter={handleRatingFilter} selectedRating={selectedRating} handleFacilityFilter={handleFacilityFilter} handleRemoveFilter={handleRemoveFilter}/>
+                <Filter handlePriceFilter={handlePriceFilter} handleRatingFilter={handleRatingFilter}  handleFacilityFilter={handleFacilityFilter} handleRemoveFilter={handleRemoveFilter}/>
             </div>}
 
           </div>

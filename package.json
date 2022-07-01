@@ -2,9 +2,10 @@
   "name": "front-end-test",
   "version": "1.0.0",
   "description": "hotel-search-results",
-  "main": "index.js",
   "scripts": {
     "start": "parcel serve src/index.html --https",
+    "start:prod": "npx serve dist",
+    "build": "parcel build src/index.html",
     "test": "jest --config jest.config.js",
     "test:watch": "jest --config --watchAll jest.config.js",
     "test:coverage": "jest --coverage"

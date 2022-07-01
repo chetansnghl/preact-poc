@@ -17,7 +17,7 @@
     text-align: left;
     margin: 0;
     padding: 0;
-    font-size: 1.6rem;
+    font-size: 1.2rem !important;
     overflow-x: hidden;
     background-color: @background-grey;
 }
@@ -47,4 +47,13 @@
 :global(input), :global(select) {
     font-family: @primary-font;
     font-weight: @font-weight-light;
+}
+
+:global(input[type='checkbox']), :global(.form-check-label)  {
+    cursor: pointer;
+}
+:global(input[type='checkbox']) {
+    &:hover {
+        transform: scale(1.2);
+    }
 }

@@ -1,7 +1,7 @@
+/** @jsx h */
 import { h, JSX } from 'preact'
-import { Router } from 'preact-router';
 import { Link } from 'preact-router/match';
-import * as style from './header.module.less'
+import * as style from '../less/header.module.less'
 
 export default function HeaderComponent(): JSX.Element {
   return (

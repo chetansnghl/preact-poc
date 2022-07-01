@@ -1,29 +1,19 @@
+/** @jsx h */
 import { h, JSX } from "preact";
-import * as style from "./filter.component.module.less";
-import StarRating from "react-svg-star-rating";
+import { FACILITIES } from '../consts/search'
+import * as style from "../less/filter.module.less";
+
+/* istanbul ignore next */
+const starIcon = require("../assets/images/star.png") as string;
 
 interface FilterProps {
   handlePriceFilter: (e: MouseEvent) => void;
-  handleRatingFilter: (rating: number) => void;
+  handleRatingFilter: (e: MouseEvent) => void;
   handleFacilityFilter: (e: MouseEvent) => void;
-  selectedRating: number;
   handleRemoveFilter: (e:MouseEvent) => void;
 }
 
-export default function Filter({handlePriceFilter,handleRatingFilter,handleFacilityFilter,selectedRating, handleRemoveFilter}: FilterProps) {
-
-    const facilities = [
-        "Bar",
-        "Fitness Centre/Gym",
-        "Internet Access",
-        "Laundry Service",
-        "Restaurant",
-        "Room Service",
-        "Safety Deposit Box",
-        "Spa",
-        "Swimming Pool",
-        "Valet parking"
-    ];
+export default function Filter({handlePriceFilter,handleRatingFilter,handleFacilityFilter, handleRemoveFilter}: FilterProps) {
     
     const priceFilter = (arr: any[]): JSX.Element => {
         return (
@@ -44,21 +34,22 @@ export default function Filter({handlePriceFilter,handleRatingFilter,handleFacil
 
     const ratingFilter = (stars: number): JSX.Element => {
         return (
-        <a
-            href="#"
-            className={selectedRating === stars? `${style["active"]}`: `${style["rating-anchor"]}`}
-            onClick={() => handleRatingFilter(stars)}
-        >
-            {stars}
-            <StarRating
-            count={1}
-            size={15}
-            unit={"full"}
-            initialRating={1}
-            isReadOnly={true}
-            />
-            +
-        </a>
+            <div className={style["filter-input"]}>
+                <input
+                type="checkbox"
+                id={stars.toString()}
+                onClick={handleRatingFilter}
+                value={stars}
+                />
+                <label
+                className="form-check-label"
+                htmlFor={stars.toString()}
+                >
+                {stars}
+                <img src={starIcon} width="15" />
+                +
+                </label>
+            </div>
         );
     };
 
@@ -66,9 +57,9 @@ export default function Filter({handlePriceFilter,handleRatingFilter,handleFacil
         <div>
             <div>
             <h2>Filters</h2>
-            <span className="d-flex flex-row-reverse">
-                <button className="btn btn-xs btn-secondary" onClick={handleRemoveFilter}>Reset All</button>                
-            </span>
+            <div className="d-flex flex-row-reverse">
+                <a className="btn btn-xs btn-danger" onClick={handleRemoveFilter}>Reset All</a>           
+            </div>
             </div>
             <hr />
             <div className="rating-filter">
@@ -91,7 +82,7 @@ export default function Filter({handlePriceFilter,handleRatingFilter,handleFacil
                 <hr />
                 <div className="rating-filter">
                 <h4>Facilities</h4>
-                {facilities.map((facility) => {
+                {FACILITIES.map((facility) => {
                     return (
                     <div className={style["filter-input"]} key={facility}>
                         <input type="checkbox" value={facility} id={facility} onClick={handleFacilityFilter}/>

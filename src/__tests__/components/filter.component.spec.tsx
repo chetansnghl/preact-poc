@@ -29,10 +29,4 @@ describe("Filter component", () => {
         const h2El = wrapper.find('h4')
         expect(h2El.length).toBe(3)
     })
-    it("consist button element", ()  => {
-        const wrapper = shallow(<Filter {...filterProps}/>);
-        const btn = wrapper.find('button')
-        
-        expect(btn.length).toBe(1)
-    })
 })

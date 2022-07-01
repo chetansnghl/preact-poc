@@ -1,7 +1,8 @@
-import { h, JSX } from "preact";
-import { Hotel, Image } from "../types/booking";
-import * as styles from "./hotel.component.module.less";
-import StarRating from "react-svg-star-rating";
+/** @jsx h */
+import { h } from "preact";
+import { Hotel } from "../types/booking";
+import * as styles from "../less/hotel.module.less";
+const starIcon = require("../assets/images/star.png") as string;
 
 type HotelProps = {
   hotel: Hotel;
@@ -9,10 +10,10 @@ type HotelProps = {
 };
 
 export default function Hotel({ hotel, pricePP }: HotelProps) {
-  const hotelName: string = hotel["content"]["name"];
-  const hotelDescription: string = hotel["content"]["hotelDescription"];
-  const hotelFacilities: Array<string> = hotel["content"]["hotelFacilities"];
-  const hotelRating: string | number = hotel.content.vRating;
+  const name: string = hotel["content"]["name"];
+  const description: string = hotel["content"]["hotelDescription"];
+  const facilities: Array<string> = hotel["content"]["hotelFacilities"];
+  const rating: string | number = hotel.content.vRating;
 
   const getImageSlider = (images) => {
     const timestamp = Math.floor(Math.random() * 100);
@@ -36,32 +37,18 @@ export default function Hotel({ hotel, pricePP }: HotelProps) {
     <div className={`"card" ${styles["card-box"]}`}>
       {getImageSlider(hotel["content"]["images"])}
       <div className="card-body">
-        <h4 className={`"card-title" ${styles["header"]}`}>{hotelName}</h4>
+        <h4 className={`"card-title" ${styles["header"]}`}>{name}</h4>
         <hr />
-        <p className={styles["cardText"]}>
-          {hotelRating}
-          <StarRating
-            count={1}
-            size={15}
-            unit={"full"}
-            initialRating={1}
-            isReadOnly={true}
-          />
-        </p>
-        <p className={`card-text ${styles["cardText"]}`}>
+        <div className={styles["cardText"]}>
+          {rating}
+          <img src={starIcon} width="15" />
+        </div>
+        <div className={`card-text ${styles["cardText"]}`}>
          <b> <span>&#8364;</span> {pricePP} <sub>PP</sub> </b>
-        </p>
-        <p className={`${styles["hotel-facilities"]}`}>          
-          {hotelFacilities.toString()}
-        </p>
-        <br/>
-        <p className={`${styles["hotel-desc"]}`}>          
-          {hotelDescription}
-        </p>
-        <a href="#" className={`btn btn-primary btn-block ${styles["hotel-link"]}`}>
-          Hotel Details
-        </a>
-        
+        </div>
+        <div className={`${styles["hotel-desc"]}`}>          
+          {description}
+        </div>        
       </div>
     </div>
   );

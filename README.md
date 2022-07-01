@@ -35,4 +35,10 @@ Thanks for your time, we look forward to hearing from you!
 
 `npm run start` to start serving the application. We are using [ParcelJS](https://parceljs.org/) to bundle to refer to their documentation for more details.
 
+## Running the app as production
+`npm run start:prod` to start serving the application as production mode. (Note: Application will work in production mode but search won't work due to proxy api call.
+
+## Running the test cases
 `npm run test` to run the unit tests. We have provided some passing tests already.
+
+`npm run test:coverage` to run the unit tests. It shows the code coverage on console or directly open the html file to see the coverage on browser (/front-end-test-main/coverage/lcov-report/index.html)

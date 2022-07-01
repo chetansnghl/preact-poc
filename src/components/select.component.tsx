@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h, options } from 'preact';
-import * as styles from './select.module.less'
+import * as styles from '../less/select.module.less'
 
 export type Option = {
   value: string

@@ -1,0 +1,104 @@
+.EP53TG_holiday-box {
+  margin: 0 auto 10px;
+}
+
+.EP53TG_holiday-box .EP53TG_holiday-list-box {
+  margin: 0 auto;
+}
+
+.EP53TG_holiday-box .EP53TG_card-text {
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  white-space: normal;
+  height: 45px;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+}
+
+.EP53TG_holiday-box .EP53TG_filters {
+  width: 250px;
+  height: auto;
+  border-radius: 7px;
+  margin-right: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px gray;
+}
+
+.EP53TG_holiday-box .EP53TG_hotels-grid {
+  width: 100%;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 250px));
+  margin: 0 auto auto;
+  display: grid;
+}
+
+.f6zjeq_filter-input label {
+  margin-left: 5px;
+  font-size: 1.2rem;
+  display: inline;
+}
+
+.f6zjeq_filter-input label:hover {
+  font-weight: bold;
+}
+
+.f6zjeq_rating-anchor {
+  color: #000;
+  text-align: center;
+  border: 1px solid gray;
+  border-radius: 20%;
+  margin: 0 5px;
+  padding: 2px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover {
+  color: #fff;
+  background-color: #000;
+  text-decoration: none;
+}
+
+.f6zjeq_active {
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  border-radius: 20%;
+  margin: 0 5px;
+  padding: 2px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.yP0ooq_cardText {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.yP0ooq_header {
+  height: 40px;
+}
+
+.yP0ooq_card-box {
+  width: 25rem;
+  box-shadow: 0 0 10px gray;
+}
+
+.yP0ooq_hotel-desc {
+  max-width: 200px;
+  -webkit-line-clamp: 3;
+  height: 58px;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+}
+
+.yP0ooq_hotel-facilities {
+  height: 60px;
+}
+
+/*# sourceMappingURL=results.route.75973ffd.css.map */

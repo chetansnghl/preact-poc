@@ -1,12 +1,13 @@
+/** @jsx h */
 import { h, JSX } from 'preact'
 import { useRouter } from "preact-router";
 import { useState, useEffect } from 'preact/hooks';
-import Spinner from "react-bootstrap/Spinner";
 import SearchComponent from '../components/search.component';
 import SearchResultComponent from '../components/searchResult.component';
 import { doRequest } from '../services/http.service';
 import { BookingRequest, BookingResponse } from '../types/booking';
 import { DateTime } from 'luxon';
+const logo = require("../assets/images/loading.gif") as string;
 
 export default function ResultsRoute(): JSX.Element {
     const [searchParams] = useRouter();
@@ -47,7 +48,7 @@ export default function ResultsRoute(): JSX.Element {
             <div className='row'>
             {isLoading ? (
                     <div className="text-center py-5">
-                        <Spinner animation="border" />
+                        <img src={logo} width="200" />
                     </div>  
                 ) : <SearchResultComponent holidays={holidays} setLoading={setLoading} /> } 
                 

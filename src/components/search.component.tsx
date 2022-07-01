@@ -2,11 +2,11 @@ import { h, JSX } from 'preact'
 import { LOCATIONS } from '../consts/search'
 import { ButtonComponent } from './button.component'
 import { DateComponent } from './date.component'
-import * as styles from './search.module.less'
 import { SelectComponent } from './select.component'
 import { route } from 'preact-router';
 import { NumberComponent } from './number.component'
 import { useRouter } from 'preact-router'
+import * as styles from '../less/search.module.less'
 
 export default function SearchComponent(): JSX.Element {
   const [ searchParams ] = useRouter();

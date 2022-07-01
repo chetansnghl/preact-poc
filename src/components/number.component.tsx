@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h } from 'preact';
-import * as styles from './number.module.less'
+import * as styles from '../less/number.module.less'
 
 type NumberProps = {
   label: string

@@ -1,8 +1,7 @@
 /** @jsx h */
 import { h } from 'preact';
-import * as styles from './date.module.less'
+import * as styles from '../less/date.module.less'
 import { DateTime } from "luxon";
-
 
 export type Option = {
   value: string
